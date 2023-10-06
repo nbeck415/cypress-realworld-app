@@ -9,6 +9,9 @@ services:
         VITE_SAME_ORIGIN: ${SAME_ORIGIN-}
     labels:
       shipyard.route: '/'
+    environment:
+        SAME_ORIGIN: ${SAME_ORIGIN-}
+        VITE_SAME_ORIGIN: ${SAME_ORIGIN-}
     ports:
       - '3000:3000'
       - '3001:3001'
