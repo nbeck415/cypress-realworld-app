@@ -149,9 +149,9 @@ export const authMachine = Machine<AuthMachineContext, AuthMachineSchema, AuthMa
     services: {
       performSignup: async (ctx, event) => {
         const payload = omit("type", event);
-        console.log(`${User}`);
+        //console.log(`${User}`);
         console.log(`${targetUrl}`);
-        const resp = await httpClient.post(`${targetUrl}/users`, payload);
+        const resp = await httpClient.post(`/users`, payload);
         console.log(resp);
         history.push("/signin");
         return resp.data;
