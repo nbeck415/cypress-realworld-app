@@ -3,8 +3,8 @@ import detect from "detect-port";
 
 export const frontendPort = process.env.PORT;
 export const backendPort = process.env.VITE_BACKEND_PORT;
-console.log(`portUtils: ${process.env.VITE_BACKEND_PORT}`)
-export const targetUrl = process.env.VITE_BACKEND_PORT?.toLowerCase() == "true" ? "" : `http://localhost:${backendPort}`
+console.log(`portUtils: ${process.env.SAME_ORIGIN}`)
+export const targetUrl = process.env.SAME_ORIGIN?.toLowerCase() == "true" ? "" : `http://localhost:${backendPort}`
 
 export const getBackendPort = async () => {
   return detect(Number(backendPort))
