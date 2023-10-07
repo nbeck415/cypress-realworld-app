@@ -154,6 +154,7 @@ export const authMachine = Machine<AuthMachineContext, AuthMachineSchema, AuthMa
         return resp.data;
       },
       performLogin: async (ctx, event) => {
+        console.log(`authMachine login: ${targetUrl}`)
         return await httpClient
           .post(`${targetUrl}/login`, event)
           .then(({ data }) => {
