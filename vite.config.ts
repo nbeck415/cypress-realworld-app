@@ -33,7 +33,7 @@ function reactVirtualized() {
 }
 
 export default defineConfig(({ command, mode }) => {
-  const env = loadEnv(mode, process.cwd(), "VITE");
+  const env = loadEnv(mode, process.cwd(), ["VITE", "SHIPYARD"]);
   return {
     // expose all vite "VITE_*" variables as process.env.VITE_* in the browser
     define: {

@@ -8,6 +8,7 @@ console.log(`VITE_SAME_ORIGIN portutils: ${process.env.VITE_SAME_ORIGIN}`)
 // export const targetUrl = process.env.SAME_ORIGIN?.toLowerCase() === "true" ? "" : `http://localhost:${backendPort}`
 export const targetUrl = process.env.VITE_SAME_ORIGIN?.toLowerCase() === "true" ? "" : `http://localhost:${backendPort}`
 console.log(`targetUrl: ${targetUrl}`)
+console.log(`shipyard domain frontend: ${process.env.SHIPYARD_DOMAIN_FRONTEND}`)
 
 export const getBackendPort = async () => {
   return detect(Number(backendPort))

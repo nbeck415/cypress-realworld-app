@@ -2,7 +2,7 @@ version: '3'
 
 services:
   frontend:
-    build: 
+    build:
       context: '.'
       args:
         SAME_ORIGIN: ${SAME_ORIGIN-}
@@ -12,8 +12,25 @@ services:
     environment:
         SAME_ORIGIN: ${SAME_ORIGIN-}
         VITE_SAME_ORIGIN: ${SAME_ORIGIN-}
+        SHIPYARD_DOMAIN_FRONTEND: ${SHIPYARD_DOMAIN_FRONTEND-}
     ports:
       - '3000:3000'
-      - '3001:3001'
     env_file:
       - .env
+
+  # backend:
+  #   build:
+  #     context: '.'
+  #     args:
+  #       SAME_ORIGIN: ${SAME_ORIGIN-}
+  #       VITE_SAME_ORIGIN: ${SAME_ORIGIN-}
+  #   labels:
+  #     shipyard.route: '/'
+  #   environment:
+  #       SAME_ORIGIN: ${SAME_ORIGIN-}
+  #       VITE_SAME_ORIGIN: ${SAME_ORIGIN-}
+  #       SHIPYARD_DOMAIN_FRONTEND: ${SHIPYARD_DOMAIN_FRONTEND-}
+  #   ports:
+  #     - '3001:3001'
+  #   env_file:
+  #     - .env
