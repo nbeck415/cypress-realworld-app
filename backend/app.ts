@@ -28,7 +28,7 @@ import { frontendPort, getBackendPort } from "../src/utils/portUtils";
 require("dotenv").config();
 
 const corsOption = {
-  origin: `http://localhost:${frontendPort}`,
+  origin: process.env.SHIPYARD_DOMAIN_FRONTEND ? process.env.SHIPYARD_DOMAIN_FRONTEND : `http://localhost:${frontendPort}`,
   credentials: true,
 };
 
@@ -49,8 +49,7 @@ if (global.__coverage__) {
   require("@cypress/code-coverage/middleware/express")(app);
 }
 
-console.log(`backend: ${process.env.SAME_ORIGIN}`)
-if (process.env.SAME_ORIGIN?.toLowerCase() !== "true") app.use(cors(corsOption));
+app.use(cors(corsOption));
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
