@@ -31,7 +31,6 @@ const corsOption = {
   origin: `http://localhost:${frontendPort}`,
   credentials: true,
 };
-
 const schema = loadSchemaSync(join(__dirname, "./graphql/schema.graphql"), {
   loaders: [new GraphQLFileLoader()],
 });
@@ -42,7 +41,6 @@ const schemaWithResolvers = addResolversToSchema({
 });
 
 const app = express();
-
 /* istanbul ignore next */
 // @ts-ignore
 if (global.__coverage__) {
@@ -50,7 +48,8 @@ if (global.__coverage__) {
 }
 
 console.log(`backend: ${process.env.SAME_ORIGIN}`)
-if (process.env.SAME_ORIGIN?.toLowerCase() !== "true") app.use(cors(corsOption));
+//if (process.env.SAME_ORIGIN?.toLowerCase() !== "true") app.use(cors(corsOption));
+app.use(cors(corsOption));
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
