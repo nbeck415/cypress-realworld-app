@@ -5,7 +5,7 @@ export const frontendPort = process.env.PORT;
 export const backendPort = process.env.VITE_BACKEND_PORT;
 console.log(`portUtils: ${process.env.SAME_ORIGIN}`)
 //export const targetUrl = process.env.SAME_ORIGIN?.toLowerCase() === "true" ? "" : `http://localhost:${backendPort}`
-export const targetUrl = process.env.SHIPYARD_DOMAIN;
+export const targetUrl = "https://cypress-realworld-app-cypress-realworld-app-pr3.dev.nbeck415.shipyard.host/";
 console.log(`targetUrl: ${targetUrl}`)
 
 export const getBackendPort = async () => {
