@@ -23,7 +23,7 @@ services:
     ports:
       - '3001:3001'
     volumes:
-      - 'dbdata:/app/data/data'
+      - 'dbdata:/app/data/database'
     env_file:
       - .env
 
