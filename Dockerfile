@@ -8,4 +8,4 @@ RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn install
 COPY . .
 
 # start app
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]

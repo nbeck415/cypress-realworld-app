@@ -157,7 +157,7 @@
     "predb:seed:dev": "yarn predev:cognito:ci",
     "predev:cognito:ci": "yarn copy:mock:awsexports && yarn copy:mock:awsexportses5",
     "predev:cognito": "yarn build:aws-exports-es5",
-    "predev": "yarn db:seed:dev",
+    "predev": "yarn db:seed:ifndf",
     "prestart:ci": "yarn predev:cognito:ci",
     "prestart:empty": "yarn db:seed:empty",
     "prestart": "yarn db:seed:ifndf",
