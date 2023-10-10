@@ -32,10 +32,28 @@ describe("Create new user", function () {
 
 describe("Login as new user", function () {
   it("should log in as the user we just created", function () {
+    cy.visit('/');
     const username = `user${userId}`;
     const password = "testingPwd";
     cy.get("input[name='username']").type(username);
     cy.get("input[name='password']").type(password);
     cy.get("button[type='submit']").click();
+  });
+});
+
+describe("Initialize user", function() {
+  beforeEach(function () {
+    cy.visit('/');
+    const username = `user${userId}`;
+    const password = "testingPwd";
+    cy.get("input[name='username']").type(username);
+    cy.get("input[name='password']").type(password);
+    cy.get("button[type='submit']").click();
+  });
+  it("should register user for a bank account", function() {
+    cy.log("test");
+  });
+  it("should edit a user's information", function () {
+    cy.log("test");
   });
 });
