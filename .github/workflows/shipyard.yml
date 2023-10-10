@@ -5,9 +5,6 @@ on: [push]
 jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
-   # container:
-      #image: cypress/browsers:node18.12.0-chrome106-ff106
-     # options: --user 1001
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -16,6 +13,13 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: dist
+      
       - run: yarn cypress info
       - run: node --version
       - run: node -p 'os.cpus()'
@@ -27,11 +31,6 @@ jobs:
           node-version: '18.16.1'
       - name: Install dependencies
         run: yarn install
-        
-      #- name: Set up Python
-        #uses: actions/setup-python@v2
-        #with:
-         # python-version: 3.11
 
       - name: Integrate Shipyard
         uses: shipyard/github-action/fetch-shipyard-env@1.0.1
@@ -53,7 +52,3 @@ jobs:
         env:
             CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
             CYPRESS_BYPASS_TOKEN: ${{ env.CYPRESS_BYPASS_TOKEN }}
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cypress-screenshot
-          path: cypress/screenshots/
