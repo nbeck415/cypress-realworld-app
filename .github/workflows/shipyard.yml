@@ -27,7 +27,6 @@ jobs:
   init-app:
     runs-on: ubuntu-latest
     steps:
-    steps:
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
