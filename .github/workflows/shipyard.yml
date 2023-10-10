@@ -17,7 +17,7 @@ jobs:
         with:
           name: build
           if-no-files-found: error
-          path: cypress/screenshots/
+          path: dist
       
       - run: yarn cypress info
       - run: node --version
@@ -41,7 +41,6 @@ jobs:
         run: |
           echo "CYPRESS_BASE_URL=${SHIPYARD_ENVIRONMENT_URL}" >> $GITHUB_ENV
           echo "CYPRESS_BYPASS_TOKEN=${SHIPYARD_BYPASS_TOKEN}" >> $GITHUB_ENV
-          echo "SHIPYARD_DOMAIN=${SHIPYARD_DOMAIN}" >> $GITHUB_ENV
           env | grep -e SHIPYARD -e CYPRESS
         shell: bash
       - name: Run E2E tests against the ephemeral environment
