@@ -65,7 +65,7 @@ module.exports = defineConfig({
     },
   },
   e2e: {
-    baseUrl: `https://frontend-cypress-realworld-app-cypress-realworld-ap-pr9.dev.nbeck415.shipyard.host/`,
+    baseUrl: `https://frontend-${process.env.SHIPYARD_DOMAIN}`,
     specPattern: "cypress/tests/**/*.spec.{js,jsx,ts,tsx}",
     supportFile: "cypress/support/e2e.ts",
     viewportHeight: 1000,
