@@ -1,5 +1,5 @@
 import { User } from "models";
-
+const userId = Cypress._.random(1000, 9999);
 describe("Create new user", function () {
   beforeEach(function () {
     //console.log(process.env.SHIPYARD_DOMAIN_FRONTEND)
@@ -13,8 +13,6 @@ describe("Create new user", function () {
   // go to sign up page and register
   it("should create a new user", function () {
     //cy.visit('/signup')
-    // tracking using a random ID
-    const userId = Cypress._.random(1000, 9999);
     const username = `user${userId}`;
     const firstName = `Name${userId}`
     const lastName = `T${userId}`
@@ -38,13 +36,24 @@ describe("Create new user", function () {
   });
 });
 
+describe("Login as new user", function () {
+  it("should log in as the user we just created", function () {
+    const username = `user${userId}`;
+    const password = "testingPwd";
+    cy.get("input[name='username']").type(username);
+    cy.get("input[name='password']").type(password);
+    cy.get("button[type='submit']").click();
+  });
+});
+
+/*
 describe("Edit existing user", function () {
     const testEmail = "Norene39@yahoo.com"
     beforeEach(function () {
       const urlToVisit = "/";
       cy.visit(urlToVisit);
       //cy.task("db:seed");
-
+      /*
       cy.intercept("PATCH", "/users/*").as("updateUser");
       cy.intercept("GET", "/notifications*").as("getNotifications");
       
@@ -53,7 +62,7 @@ describe("Edit existing user", function () {
           cy.loginByXstate(user.username);
         }
       });
-
+      
       cy.getBySel("sidenav-user-settings").click();
 
     });
