@@ -9,6 +9,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - run: yarn cypress cache clear
+      
       - name: Cypress install
         uses: cypress-io/github-action@v6
         with:
