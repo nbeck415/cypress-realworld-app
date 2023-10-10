@@ -43,17 +43,38 @@ describe("Login as new user", function () {
 
 describe("Initialize user", function() {
   beforeEach(function () {
-    cy.visit('/');
+    cy.visit('/signup');
     const username = `user${userId}`;
+    const firstName = `Name${userId}`
+    const lastName = `T${userId}`
+    cy.get("input[name='username']").type(username);
+    cy.get("input[name='firstName']").type(firstName);
+    cy.get("input[name='lastName']").type(lastName);
+    // only field that really matters is username because uses ID
+    // maybe we track user by the auto assigned ID instead of username?
+    cy.get("input[name='password']").type("testingPwd");
+    cy.get("input[name='confirmPassword']").type("testingPwd");
+
+    // add user to db
+    cy.get("button[type='submit']").click();
+
+    cy.visit('/');
     const password = "testingPwd";
     cy.get("input[name='username']").type(username);
     cy.get("input[name='password']").type(password);
     cy.get("button[type='submit']").click();
   });
   it("should register user for a bank account", function() {
-    cy.log("test");
+    cy.contains('button', 'Next').click();
+    cy.get("input[name='bankName']").type("US Bank");
+    cy.get("input[name='routingNumber']").type("987123745");
+    cy.get("input[name='accountNumber']").type("112987234");
+    cy.get("button[type='submit']").click();
+    cy.contains('button', 'Done').click();
+
   });
   it("should edit a user's information", function () {
-    cy.log("test");
+    cy.getBySel("sidenav-user-settings").click();
+    
   });
 });
