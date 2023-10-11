@@ -18,7 +18,7 @@ module.exports = defineConfig({
     runMode: 2,
   },
   env: {
-    apiUrl: process.env.SHIPYARD_DOMAIN_BACKEND,
+    apiUrl: "frontend-cypress-realworld-app-cypress-realworld-ap-pr9.dev.nbeck415.shipyard.host",
     mobileViewportWidthBreakpoint: 414,
     coverage: false,
     codeCoverage: {
