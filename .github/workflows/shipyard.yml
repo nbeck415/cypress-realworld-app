@@ -1,0 +1,55 @@
+name: Run E2E Tests
+
+on: [push]
+
+jobs:
+  run-cypress-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3      
+      - name: Cypress install
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: dist
+      
+      - run: yarn cypress info
+      - run: node --version
+      - run: node -p 'os.cpus()'
+      - run: yarn types
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.16.1'
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Integrate Shipyard
+        uses: shipyard/github-action/fetch-shipyard-env@1.0.1
+        with:
+          api-token: ${{ secrets.SHIPYARD_API_TOKEN }}
+          timeout-minutes: "10"
+          app-name: "cypress-realworld-app"
+      - name: Print Env Data
+        run: |
+          echo "CYPRESS_BASE_URL=${SHIPYARD_ENVIRONMENT_URL}" >> $GITHUB_ENV
+          echo "CYPRESS_BYPASS_TOKEN=${SHIPYARD_BYPASS_TOKEN}" >> $GITHUB_ENV
+          echo "${SHIPYARD_DOMAIN}"
+          echo "${CYPRESS_BASE_URL}"
+          env | grep -e SHIPYARD -e CYPRESS
+        shell: bash
+      - name: Run E2E tests against the ephemeral environment
+        run: |
+          echo $SHIPYARD_ENVIRONMENT_URL
+          yarn cypress:run --spec "cypress/tests/shipyard/manage-user.spec.ts"
+        shell: bash
+        env:
+            CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
+            CYPRESS_BYPASS_TOKEN: ${{ env.CYPRESS_BYPASS_TOKEN }}

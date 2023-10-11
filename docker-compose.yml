@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: '.'
+    labels:
+      shipyard.route: '/'
+      shipyard.primary-route: 'true'
+    environment:
+        SHIPYARD_DOMAIN_BACKEND: ${SHIPYARD_DOMAIN_BACKEND-}
+        SHIPYARD_DOMAIN: ${SHIPYARD_DOMAIN}
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+
+  backend:
+    build:
+      context: '.'
+    labels:
+      shipyard.route: '/'
+    environment:
+        SHIPYARD_DOMAIN_FRONTEND: ${SHIPYARD_DOMAIN_FRONTEND-}
+        SHIPYARD_DOMAIN: ${SHIPYARD_DOMAIN}       
+    ports:
+      - '3001:3001'
+    volumes:
+      - 'dbdata:/app/data/database'
+    env_file:
+      - .env
+
+volumes:
+  dbdata:

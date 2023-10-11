@@ -10,7 +10,7 @@ import { defineConfig } from "cypress";
 dotenv.config({ path: ".env.local" });
 dotenv.config();
 
-const awsConfig = require(path.join(__dirname, "./aws-exports-es5.js"));
+//const awsConfig = require(path.join(__dirname, "./aws-exports-es5.js"));
 
 module.exports = defineConfig({
   projectId: "7s5okt",
@@ -18,11 +18,11 @@ module.exports = defineConfig({
     runMode: 2,
   },
   env: {
-    apiUrl: "http://localhost:3001",
+    apiUrl: process.env.SHIPYARD_DOMAIN_BACKEND,
     mobileViewportWidthBreakpoint: 414,
     coverage: false,
     codeCoverage: {
-      url: "http://localhost:3001/__coverage__",
+      url: `https://${process.env.SHIPYARD_DOMAIN_BACKEND}/__coverage__`,
       exclude: "cypress/**/*.*",
     },
     defaultPassword: process.env.SEED_DEFAULT_USER_PASSWORD,
@@ -41,11 +41,11 @@ module.exports = defineConfig({
     okta_programmatic_login: process.env.OKTA_PROGRAMMATIC_LOGIN || false,
 
     // Amazon Cognito
-    cognito_username: process.env.AWS_COGNITO_USERNAME,
-    cognito_password: process.env.AWS_COGNITO_PASSWORD,
-    cognito_domain: process.env.AWS_COGNITO_DOMAIN,
+    cognito_username: process.env._COGNITO_USERNAME,
+    cognito_password: process.env._COGNITO_PASSWORD,
+    cognito_domain: process.env._COGNITO_DOMAIN,
     cognito_programmatic_login: false,
-    awsConfig: awsConfig.default,
+    //awsConfig: awsConfig.default,
 
     // Google
     googleRefreshToken: process.env.GOOGLE_REFRESH_TOKEN,
@@ -65,7 +65,7 @@ module.exports = defineConfig({
     },
   },
   e2e: {
-    baseUrl: "http://localhost:3000",
+    baseUrl: `https://frontend-${process.env.SHIPYARD_DOMAIN}`,
     specPattern: "cypress/tests/**/*.spec.{js,jsx,ts,tsx}",
     supportFile: "cypress/support/e2e.ts",
     viewportHeight: 1000,
