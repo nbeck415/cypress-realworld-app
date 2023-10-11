@@ -6,14 +6,13 @@ jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Clear cache
-        run: npx cypress cache clear
       - name: Checkout
         uses: actions/checkout@v3      
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
+      #- name: Cypress install
+       # uses: cypress-io/github-action@v6
+       # with:
+       #  runTests: false
+       #   headed: true
       - name: Save build folder
         uses: actions/upload-artifact@v3
         with:
@@ -51,5 +50,5 @@ jobs:
           yarn cypress:run --spec "cypress/tests/shipyard/manage-user.spec.ts"
         shell: bash
         env:
-            CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
-            CYPRESS_BYPASS_TOKEN: ${{ env.CYPRESS_BYPASS_TOKEN }}
+          CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
+          CYPRESS_BYPASS_TOKEN: ${{ env.CYPRESS_BYPASS_TOKEN }}
