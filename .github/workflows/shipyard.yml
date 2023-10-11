@@ -6,11 +6,6 @@ jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Clear Cypress Cache
-        uses: actions/cache@v3
-        with:
-          path: /home/runner/work/_temp/d5cf1418-a082-4ec5-8769-3fd64ba2dac6/cache.tzst
-          key: ${{ runner.os }}-cypress-cache-key
       - name: Checkout
         uses: actions/checkout@v3      
       - name: Cypress install
@@ -46,6 +41,8 @@ jobs:
         run: |
           echo "CYPRESS_BASE_URL=${SHIPYARD_ENVIRONMENT_URL}" >> $GITHUB_ENV
           echo "CYPRESS_BYPASS_TOKEN=${SHIPYARD_BYPASS_TOKEN}" >> $GITHUB_ENV
+          echo "${SHIPYARD_DOMAIN}"
+          echo "${CYPRESS_BASE_URL}"
           env | grep -e SHIPYARD -e CYPRESS
         shell: bash
       - name: Run E2E tests against the ephemeral environment
