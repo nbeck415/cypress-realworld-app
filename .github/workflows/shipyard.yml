@@ -6,6 +6,8 @@ jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Clear cache
+        run: npx cypress cache clear
       - name: Checkout
         uses: actions/checkout@v3      
       - name: Cypress install
