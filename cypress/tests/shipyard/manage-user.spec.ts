@@ -74,7 +74,10 @@ describe("Initialize user", function() {
 
   });
   it("should edit a user's information", function () {
+    cy.wait(2000);
     cy.getBySel("sidenav-user-settings").click();
-    
+    cy.wait(2000);
+    cy.get("input[name='email']").should('have.value', '');
+    cy.get("input[name='email']").type("email@gmail.com");
   });
 });
