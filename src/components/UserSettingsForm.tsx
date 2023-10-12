@@ -141,7 +141,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
                 data-test="user-settings-submit"
                 disabled={!isValid || isSubmitting}
               >
-                CypressConf 2023
+                Save
               </Button>
             </Grid>
           </Grid>
