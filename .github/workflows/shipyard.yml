@@ -36,7 +36,7 @@ jobs:
         with:
           api-token: ${{ secrets.SHIPYARD_API_TOKEN }}
           timeout-minutes: "10"
-          app-name: "cypress-realworld-app"
+          app-name: "shipyard-cypress-realworld-app"
       - name: Print Env Data
         run: |
           echo "CYPRESS_BASE_URL=${SHIPYARD_ENVIRONMENT_URL}" >> $GITHUB_ENV
