@@ -133,7 +133,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
           <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
             <Grid item>
               <Button
-                type="reset"
+                type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
@@ -141,7 +141,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
                 data-test="user-settings-submit"
                 disabled={!isValid || isSubmitting}
               >
-                Save
+                CypressConf 2023
               </Button>
             </Grid>
           </Grid>
