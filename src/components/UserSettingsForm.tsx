@@ -133,7 +133,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
           <Grid container spacing={2} direction="row" justify="flex-start" alignItems="flex-start">
             <Grid item>
               <Button
-                type="submit"
+                type="reset"
                 fullWidth
                 variant="contained"
                 color="primary"
